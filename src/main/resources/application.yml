@@ -1,5 +1,10 @@
 covidtrackingapi:
   allstates:
-    url: https://api.covidtracking.com/v1/states/current.json
+    stats:
+      url: https://api.covidtracking.com/v1/states/current.json
+    metadata:
+      url: https://api.covidtracking.com/v1/states/info.json
+
   singlestate:
-    url: https://api.covidtracking.com/v1/states/%s/%s.json
+    stats:
+      url: https://api.covidtracking.com/v1/states/%s/%s.json

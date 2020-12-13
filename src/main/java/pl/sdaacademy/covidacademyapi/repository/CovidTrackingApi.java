@@ -1,5 +1,6 @@
 package pl.sdaacademy.covidacademyapi.repository;
 
+import pl.sdaacademy.covidacademyapi.model.StateMetadata;
 import pl.sdaacademy.covidacademyapi.model.StateStats;
 
 public interface CovidTrackingApi {
@@ -7,4 +8,6 @@ public interface CovidTrackingApi {
     StateStats[] getAllStatesCurrentStats();
 
     StateStats getSingleStateStats(String state, String date);
+
+    StateMetadata[] getAllStatesMetadata();
 }

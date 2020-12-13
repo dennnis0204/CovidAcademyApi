@@ -3,16 +3,20 @@ package pl.sdaacademy.covidacademyapi.repository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
+import pl.sdaacademy.covidacademyapi.model.StateMetadata;
 import pl.sdaacademy.covidacademyapi.model.StateStats;
 
 @Repository
 public class CovidTrackingApiRepository implements CovidTrackingApi {
 
-    @Value("${covidtrackingapi.allstates.url}")
+    @Value("${covidtrackingapi.allstates.stats.url}")
     private String allStateStatsUrl;
 
-    @Value("${covidtrackingapi.singlestate.url}")
+    @Value("${covidtrackingapi.singlestate.stats.url}")
     private String singleStateStatsUrlPattern;
+
+    @Value("${covidtrackingapi.allstates.metadata.url}")
+    private String allStatesMetadataUrl;
 
     private final RestTemplate restTemplate;
 
@@ -30,5 +34,10 @@ public class CovidTrackingApiRepository implements CovidTrackingApi {
         String requestUrl = String.format(singleStateStatsUrlPattern, state, date);
 
         return restTemplate.getForObject(requestUrl, StateStats.class);
+    }
+
+    @Override
+    public StateMetadata[] getAllStatesMetadata() {
+        return restTemplate.getForObject(allStatesMetadataUrl, StateMetadata[].class);
     }
 }
