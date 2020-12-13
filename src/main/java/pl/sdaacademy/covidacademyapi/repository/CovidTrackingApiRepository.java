@@ -8,29 +8,26 @@ import pl.sdaacademy.covidacademyapi.model.StateStats;
 @Repository
 public class CovidTrackingApiRepository implements CovidTrackingApi {
 
-    private final String ALL_STATES_STATS_URL;
+    @Value("${covidtrackingapi.allstates.url}")
+    private String allStateStatsUrl;
 
-    private final String SINGLE_STATE_STATS_URL_PATTERN;
+    @Value("${covidtrackingapi.singlestate.url}")
+    private String singleStateStatsUrlPattern;
 
     private final RestTemplate restTemplate;
 
-    public CovidTrackingApiRepository(
-            @Value("${allstatescovidtrackingapi.url}") String url,
-            @Value("${singlestatecovidtrackingapi.url}") String urlPattern,
-            RestTemplate restTemplate) {
-        this.ALL_STATES_STATS_URL = url;
-        this.SINGLE_STATE_STATS_URL_PATTERN = urlPattern;
+    public CovidTrackingApiRepository(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
     @Override
     public StateStats[] getAllStatesCurrentStats() {
-        return restTemplate.getForObject(ALL_STATES_STATS_URL, StateStats[].class);
+        return restTemplate.getForObject(allStateStatsUrl, StateStats[].class);
     }
 
     @Override
     public StateStats getSingleStateStats(String state, String date) {
-        String requestUrl = String.format(SINGLE_STATE_STATS_URL_PATTERN, state, date);
+        String requestUrl = String.format(singleStateStatsUrlPattern, state, date);
 
         return restTemplate.getForObject(requestUrl, StateStats.class);
     }
