@@ -2,7 +2,7 @@ package pl.sdaacademy.covidacademyapi.states_stats.service;
 
 import org.springframework.stereotype.Service;
 import pl.sdaacademy.covidacademyapi.states_stats.repository.CovidTrackingApi;
-import pl.sdaacademy.covidacademyapi.states_stats.repository.StateCurrentStats;
+import pl.sdaacademy.covidacademyapi.model.StateCurrentStats;
 
 @Service
 public class StatesStatsService {

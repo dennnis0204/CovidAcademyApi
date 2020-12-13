@@ -4,7 +4,7 @@ package pl.sdaacademy.covidacademyapi.states_stats.web;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.sdaacademy.covidacademyapi.states_stats.repository.StateCurrentStats;
+import pl.sdaacademy.covidacademyapi.model.StateCurrentStats;
 import pl.sdaacademy.covidacademyapi.states_stats.service.StatesStatsService;
 
 @RestController
@@ -19,7 +19,7 @@ public class StatesStatsController {
     }
 
     @GetMapping
-    public StateCurrentStats[] getCurrentStateStats() {
+    public StateCurrentStats[] getCurrentStatesStats() {
         return statesStatsService.getAllStatesCurrentStats();
     }
 }
