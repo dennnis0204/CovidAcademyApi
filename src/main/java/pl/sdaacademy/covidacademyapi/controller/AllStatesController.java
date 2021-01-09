@@ -16,7 +16,6 @@ public class AllStatesController {
     private final AllStatesService allStatesService;
 
     public AllStatesController(AllStatesService allStatesService) {
-
         this.allStatesService = allStatesService;
     }
 

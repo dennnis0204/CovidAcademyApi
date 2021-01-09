@@ -23,7 +23,7 @@ public class StateMetadata {
 
     private String twitter;
 
-    @Column(name = "website")
+    @Column(name = "website", columnDefinition = "LONGTEXT")
     private String covid19Site;
 
 }
