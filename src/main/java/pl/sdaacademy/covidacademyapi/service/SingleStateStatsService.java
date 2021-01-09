@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pl.sdaacademy.covidacademyapi.exception.NoSuchStateNameException;
 import pl.sdaacademy.covidacademyapi.model.StateMetadata;
 import pl.sdaacademy.covidacademyapi.model.StateStats;
+import pl.sdaacademy.covidacademyapi.model.StateStatsDto;
 import pl.sdaacademy.covidacademyapi.repository.CovidTrackingApi;
 import pl.sdaacademy.covidacademyapi.repository.StateMetadataRepository;
 
@@ -16,14 +17,13 @@ public class SingleStateStatsService {
     private final AllStatesService allStatesService;
     private final StateMetadataRepository stateMetadataRepository;
 
-
     public SingleStateStatsService(CovidTrackingApi covidTrackingApi, AllStatesService allStatesService, StateMetadataRepository stateMetadataRepository) {
         this.covidTrackingApi = covidTrackingApi;
         this.allStatesService = allStatesService;
         this.stateMetadataRepository = stateMetadataRepository;
     }
 
-    public StateStats getStateCurrentStats(String state, String date) {
+    public StateStatsDto getStateCurrentStats(String state, String date) {
 
         if (stateMetadataRepository.count() == 0) {
             allStatesService.getAllStatesMetadata();
@@ -37,6 +37,19 @@ public class SingleStateStatsService {
 
         String stateAcronym = stateMetadata.get().getState();
 
-        return covidTrackingApi.getSingleStateStats(stateAcronym, date);
+        StateStats singleStateStats = covidTrackingApi.getSingleStateStats(stateAcronym, date);
+
+        return mapToStateStatsDto(singleStateStats);
+    }
+
+    private StateStatsDto mapToStateStatsDto(StateStats stateStats) {
+        StateStatsDto stateStatsDto = new StateStatsDto();
+        stateStatsDto.setState(stateStats.getState());
+        stateStatsDto.setDateChecked(stateStats.getDateChecked());
+        stateStatsDto.setNegative(stateStats.getNegative());
+        stateStatsDto.setPositive(stateStats.getPositive());
+        stateStatsDto.setDeathConfirmed(stateStats.getDeathConfirmed());
+        stateStatsDto.setRecovered(stateStats.getRecovered());
+        return stateStatsDto;
     }
 }
