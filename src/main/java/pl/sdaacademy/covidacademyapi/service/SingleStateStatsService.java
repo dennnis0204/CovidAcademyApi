@@ -1,8 +1,10 @@
-package pl.sdaacademy.covidacademyapi.single_state_stats;
+package pl.sdaacademy.covidacademyapi.service;
 
 import org.springframework.stereotype.Service;
 import pl.sdaacademy.covidacademyapi.model.StateStats;
 import pl.sdaacademy.covidacademyapi.repository.CovidTrackingApi;
+
+import java.util.HashSet;
 
 @Service
 public class SingleStateStatsService {

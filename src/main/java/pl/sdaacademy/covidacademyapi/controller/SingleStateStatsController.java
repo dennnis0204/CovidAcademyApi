@@ -1,11 +1,11 @@
-package pl.sdaacademy.covidacademyapi.single_state_stats;
+package pl.sdaacademy.covidacademyapi.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.sdaacademy.covidacademyapi.model.StateStats;
-import pl.sdaacademy.covidacademyapi.single_state_stats.SingleStateStatsService;
+import pl.sdaacademy.covidacademyapi.service.SingleStateStatsService;
 
 
 @RestController

@@ -8,3 +8,25 @@ covidtrackingapi:
   singlestate:
     stats:
       url: https://api.covidtracking.com/v1/states/%s/%s.json
+
+spring:
+  datasource:
+#    url: jdbc:mysql://localhost:3306/covidacademy
+#    username: sdastudent
+#    password: Student$13
+
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+#      dialect: org.hibernate.dialect.MySQL5Dialect
+      databaseplatform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+
