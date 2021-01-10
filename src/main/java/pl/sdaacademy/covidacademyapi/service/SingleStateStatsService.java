@@ -31,7 +31,7 @@ public class SingleStateStatsService {
 
         Optional<StateMetadata> stateMetadata = stateMetadataRepository.findFirstByNameIgnoreCase(state);
 
-        if (stateMetadata.isEmpty()) {
+        if (!stateMetadata.isPresent()) {
             throw new NoSuchStateNameException("Bad state name, check your url address!");
         }
 
